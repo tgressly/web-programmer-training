@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 # creates mysql backups of every db
 # keeps history of 7 versions (7 is oldest)

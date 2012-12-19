@@ -1,2 +1,3 @@
 this is the first line of a simple text file
+gaga
 this is the second line

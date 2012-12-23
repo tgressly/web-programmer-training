@@ -13,6 +13,8 @@ DEST_PATH=/path/to/backup/directory
 USER=your_username_here
 PASSWORD=your_password_here
 NIGHTLY_SUFFIX=nightly
+EXCLUDE_NATIVE_DBS="^information_schema$|^performance_schema$|^mysql$"
+EXCLUDE_DBS="$EXCLUDE_NATIVE_DBS|^.+_${NIGHTLY_SUFFIX}$|^.+_bck.*$"
 
 function rotate {
   echo "Rotating "$database
@@ -48,7 +50,7 @@ echo "Starting at: "`date`
 cd $DEST_PATH
 
 for database in `$MYSQL_BIN_PATH/mysql --user=$USER --password=$PASSWORD -e "SHOW DATABASES;" -B --column-names=false`; do
-  if [[ ! $database =~ ^.+_${NIGHTLY_SUFFIX}$|^information_schema$|^mysql$|^.+_bck.*$ ]] ; then
+  if [[ ! $database =~ $EXCLUDE_DBS ]] ; then
     echo
     echo $database
     rotate $database

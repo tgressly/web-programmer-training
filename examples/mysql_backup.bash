@@ -17,7 +17,7 @@ EXCLUDE_NATIVE_DBS="^information_schema$|^performance_schema$|^mysql$"
 EXCLUDE_DBS="$EXCLUDE_NATIVE_DBS|^.+_${NIGHTLY_SUFFIX}$|^.+_bck.*$"
 
 function rotate {
-  echo "Rotating "$database
+  echo "Rotating $1"
   if [ -f "$1.7" ]; then rm -f "$1.7"; fi
   if [ -f "$1.6" ]; then mv -f "$1.6" "$1.7"; fi
   if [ -f "$1.5" ]; then mv -f "$1.5" "$1.6"; fi
@@ -29,7 +29,7 @@ function rotate {
 }
 
 function dump {
-  echo "Backing up "$database
+  echo "Dumping $1"
   $MYSQL_BIN_PATH/mysqldump \
   --force \
   --add-drop-database \
@@ -42,7 +42,7 @@ function dump {
 }
 
 function backup {
-  echo "Overriding "$1_$NIGHTLY_SUFFIX
+  echo "Backing up, overriding $1_$NIGHTLY_SUFFIX"
   $MYSQL_BIN_PATH/mysql --force --user=$USER --password=$PASSWORD $1_$NIGHTLY_SUFFIX < $DEST_PATH/$1
 }
 

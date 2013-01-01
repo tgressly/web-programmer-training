@@ -63,4 +63,4 @@ done
 echo
 echo "Done at: "`date`
 
-exit 0;
+exit 0

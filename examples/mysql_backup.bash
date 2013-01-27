@@ -4,7 +4,7 @@
 # keeps history of 7 versions (7 is oldest)
 # rotates the versions
 
-# (c) Thomas Mouzinho, founder@foundit.ch
+# (c) Thomas Gressly, founder@foundit.ch
 
 HOST=`hostname`
 PATH=$PATH:/usr/bin

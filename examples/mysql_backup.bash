@@ -31,6 +31,7 @@ function rotate {
 function dump {
   echo "Dumping $1"
   $MYSQL_BIN_PATH/mysqldump \
+  --max_allowed_packet=512M \
   --force \
   --add-drop-database \
   --add-drop-table \
